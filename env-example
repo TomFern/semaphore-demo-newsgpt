@@ -1,0 +1,5 @@
+# Get them from your OpenAI account
+export OPENAI_API_KEY=YOUR_API_KEY
+
+# Register at https://newsapi.org/ and get a free/starter key
+export NEWS_API_KEY=YOUR_API_KEY
