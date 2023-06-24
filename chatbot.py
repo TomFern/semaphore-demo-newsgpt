@@ -1,6 +1,6 @@
 import openai
-import json
 import tiktoken
+import json
 import os
 import requests
 
@@ -59,7 +59,7 @@ def get_top_headlines(query: str = None, country: str = None, category: str = No
         return 'No articles found'
     
 
-# Describe `get_top_headlines` usage to the LLM
+# Describes `get_top_headlines` usage 
 # Reference: https://platform.openai.com/docs/guides/gpt/function-calling
 signature_get_top_headlines = {
     "name": "get_top_headlines",
@@ -91,9 +91,9 @@ def complete(messages, function_call: str = "auto"):
     
     Arguments:
     messages -- list of chat completions API (https://platform.openai.com/docs/guides/gpt)
-    function_call -- "auto" -> the model decides which function to call, "none" -> don't call any function
+    function_call -- "auto" -> the model decides if function is called, "none" -> don't call any function
 
-    Returns: None. This function updates `messages` as needed. 
+    Returns: None. Responses are appended into `messages` variable. 
     """
 
     # append system message
@@ -139,7 +139,7 @@ while True:
     messages.append({"role": "user", "content": prompt})
     complete(messages)
 
-    # since the LLM can request chained function calls, we put a hard limit to avoid an infinite chain
+    # the LLM can chain function calls, this implements a limit
     call_count = 0
     while messages[-1]['role'] == "function":
         call_count = call_count + 1
@@ -148,6 +148,7 @@ while True:
         else:
             complete(messages, function_call="none")
 
+    # print last message
     print("\n\n==Response==\n")
     print(messages[-1]["content"].strip())
     print("\n==End of response==")
