@@ -33,7 +33,7 @@ $ source .env
 Start the chatbot:
 
 ```bash
-$ python chatbot.py
+$ python newsgpt.py
 
 Hi, I'm a NewsGPT a breaking news AI assistant. I can give you news for most countries over a wide range of categories.
 Here are some example prompts:
